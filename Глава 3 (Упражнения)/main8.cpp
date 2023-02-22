@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <math.h>
 using namespace std;
 int main() {
     int y;
@@ -25,16 +24,26 @@ int main() {
             sum += (cen[i] * y);
         }
     }
-
-
-
-        if(fmod(sum,100.0)>0){
-        if(fmod(sum,100.0)==1){ cout<<"\nОбщая стоимость "<<(sum/100)<<" долларов "<<fmod(sum,100.0)<<" цент";}
-        else{ cout<<"\nОбщая стоимость "<<(sum/100.0)<<" долларов "<<fmod(sum,100.0)<<" цента";}
+    cout<<endl;
+    
+    if( int(sum) == 1){
+        if((int(sum*100))%2 == 1){
+            cout<<"Общая стоимость "<<int(sum)<<" доллар "<<(int(sum*100))%100<<" цент";
+        }
+        else{
+            cout<<"Общая стоимость "<<int(sum)<<" доллар "<<(int(sum*100))%100<<" цента";
+        }
+    } else if(int(sum) == 2 || int(sum) == 3 || int(sum) == 4){
+        if((int(sum*100))%2 == 1){
+            cout<<"Общая стоимость "<<int(sum)<<" доллара "<<(int(sum*100))%100<<" цент";
+        }
+        else{
+            cout<<"Общая стоимость "<<int(sum)<<" доллара "<<(int(sum*100))%100<<" центов";
+        }
     }else{
-        if(fmod(sum,100.0)==1){cout<<"\nОбщая стоимость "<<fmod(sum,100.0)<<" цент"<<endl;}
-        else{cout<<"\nОбщая стоимость "<<fmod(sum,100.0)<<" центов"<<endl;}
+        cout<<"Общая стоимость "<<int(sum)<<" долларов "<<(int(sum*100))%100<<" центов";
     }
-
+    
+    return 0;
 
 }
