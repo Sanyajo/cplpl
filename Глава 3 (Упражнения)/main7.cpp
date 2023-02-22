@@ -10,24 +10,20 @@ int main(){
         {"четыре",4},
         {"пять",5}};
 
-    string number;
+    int number;
     cout<<"Введите число: ";
     cin>>number;
 
-    bool check = true;
     auto it = mp.begin();
+    int k=1;
     for(;it!=mp.end();++it){
-         if(number==it->first){
-             check = true;
-             break;
-         }
-         else{ check=false;}
+        if(number==it->second){
+            cout<<"Число как строка: "<<it->first;
+            k++;
+            break;
+        }
     }
-    if(!check){
-        cout<<"Я не знаю такого числа!\n";
-    }else{
-        cout<<"Число как строка: "<<mp[number];
-    }
-    //cout<<"Число как строка: "<<mp[number];
+
+    if(k==1){cout<<"Я не знаю такого числа!\n";}
     return 0;
 }
