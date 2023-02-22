@@ -16,7 +16,7 @@ int main() {
             sum += (cen[i] * y);
         }
         else if (y == 2 || y == 3 || y == 4) {
-            cout << "У вас " << y <<" "<< vec1[i] << " монеты";
+            cout << "У вас " << y <<" "<< vec[i] << " монеты";
             sum += (cen[i] * y);
         }
         else {
@@ -25,7 +25,7 @@ int main() {
         }
     }
     cout<<endl;
-    
+
     if( int(sum) == 1){
         if((int(sum*100))%2 == 1){
             cout<<"Общая стоимость "<<int(sum)<<" доллар "<<(int(sum*100))%100<<" цент";
@@ -43,7 +43,7 @@ int main() {
     }else{
         cout<<"Общая стоимость "<<int(sum)<<" долларов "<<(int(sum*100))%100<<" центов";
     }
-    
+
     return 0;
 
 }
