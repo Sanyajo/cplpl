@@ -16,22 +16,7 @@ void foo(string& str, int& x, vector<string>& vec1,vector<string> vec2){
     }
 }
 
-int main(){
-    vector <string> vec1 ={"zero","one","two","three","four","five","six","seven","eight","nine"};
-    vector <string> vec2 = {"0","1","2","3","4","5","6","7","8","9"};
-    string str_x1, str_x2;
-    int x1,x2;
-    cout<<"Введите числа: ";
-    cin>>str_x1>>str_x2;
-
-    foo(str_x1,x1,vec1,vec2);
-    foo(str_x2,x2,vec1,vec2);
-
-
-    char ch =' ';
-    cout<<"Выберите действие: ";
-    cin>>ch;
-
+void sw(char& ch, int& x1, int& x2, vector<string>& vec1, vector<string>& vec2){
     switch (ch) {
         case '+':
             cout<<"Сумма "<<x1<<" и "<<x2<<" равна "<<(x1+x2)<<"\n";
@@ -59,6 +44,28 @@ int main(){
             cout<<"Умножение "<<x1<<" и "<<x2<<" равно "<<(x1*x2)<<"\n";
             break;
     }
+}
 
-    return 0;
+int main(){
+    vector <string> vec1 ={"zero","one","two","three","four","five","six","seven","eight","nine"};
+    vector <string> vec2 = {"0","1","2","3","4","5","6","7","8","9"};
+    string str_x1, str_x2;
+    int x1,x2;
+    cout<<"Введите числа: ";
+    cin>>str_x1>>str_x2;
+
+    foo(str_x1,x1,vec1,vec2);
+    foo(str_x2,x2,vec1,vec2);
+
+    while(true){
+        char ch =' ';
+        cout<<"Выберите действие: ";
+        cin>>ch;
+
+        if(ch == 'n'){
+            return 0;
+        }else{
+            sw(ch,x1,x2,vec1,vec2);
+        }
+    }
 }
