@@ -1,6 +1,21 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+
+void foo(string& str, int& x, vector<string>& vec1,vector<string> vec2){
+    auto it = find(vec1.begin(),vec1.end(),str);
+    if(it == vec1.end()){
+        for(int i=0;i<vec2.size();i++){
+            if(str == vec2[i])    x=i;
+        }
+    }
+    else{
+        for(int i=0;i<vec1.size();i++){
+            if(str == vec1[i])    x=i;
+        }
+    }
+}
+
 int main(){
     vector <string> vec1 ={"zero","one","two","three","four","five","six","seven","eight","nine"};
     vector <string> vec2 = {"0","1","2","3","4","5","6","7","8","9"};
@@ -9,29 +24,9 @@ int main(){
     cout<<"Введите числа: ";
     cin>>str_x1>>str_x2;
 
-    auto it1 = find(vec1.begin(),vec1.end(),str_x1);
-    if(it1 == vec1.end()){
-        for(int i=0;i<vec2.size();i++){
-            if(str_x1 == vec2[i])    x1=i;
-        }
-    }
-    else{
-        for(int i=0;i<vec1.size();i++){
-            if(str_x1 == vec1[i])    x1=i;
-        }
-    }
+    foo(str_x1,x1,vec1,vec2);
+    foo(str_x2,x2,vec1,vec2);
 
-    auto it2 = find(vec1.begin(),vec1.end(),str_x2);
-    if(it2 == vec1.end()){
-        for(int i=0;i<vec2.size();i++){
-            if(str_x2 == vec2[i])    x2=i;
-        }
-    }
-    else{
-        for(int i=0;i<vec1.size();i++){
-            if(str_x2 == vec1[i])    x2=i;
-        }
-    }
 
     char ch =' ';
     cout<<"Выберите действие: ";
@@ -64,6 +59,6 @@ int main(){
             cout<<"Умножение "<<x1<<" и "<<x2<<" равно "<<(x1*x2)<<"\n";
             break;
     }
-    
+
     return 0;
 }
