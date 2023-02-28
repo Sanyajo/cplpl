@@ -10,8 +10,8 @@ import time
 # import tempfile
 # from docxtpl import DocxTemplate
 
-list_tab1 = ['tab1_id','number','name']
-list_tab2=[]
+list_WidyGSM = ['Код ГСМ','Название ГСМ','Вид ГСМ','Марка ГСМ']
+list_PostawhikiGSM=['Код поставщика', 'Название производителя', 'Адрес производителя', 'Код ГСМ']
 list_tab3=[]
 list_tab4=[]
 
@@ -86,6 +86,7 @@ class loginSystem(tk.Frame):
             self.repeatButton=tk.Button(self.errorWindowFrame, text="Повторить",width=20,font=('',12),command=errorWindow.destroy)
             self.repeatButton.pack(side=tk.BOTTOM,pady=5)
 
+
 class mainProgramm(tk.Frame):
 
     def __init__(self,win):
@@ -139,36 +140,7 @@ class mainProgramm(tk.Frame):
         self.LogTime=tk.Label(self.frameMain,text=f"Дата входа:\t{time_string}",font=('',16))
         self.LogTime.place(x=50,y=450)
 
-    def newDataBaseTable(self):
-        try:
-            pass
-            with conn.cursor() as cursor:
-                cursor.execute(
-                    """CREATE TABLE users(
-                        id serial PRIMARY KEY,
-                        first_name varchar(50) NOT NULL,
-                        nick_name varchar(50) NOT NULL);
-                    """
-                )
-        except Exception as _ex:
-            w = win.winfo_screenwidth()
-            h = win.winfo_screenheight()
-            w = (w // 2) - 200
-            h = (h // 2) - 200
-
-            eWin = tk.Toplevel()
-            eWin.title("Ошибка")
-            eWin.geometry("300x150+{}+{}".format(w,h))
-            self.frame =tk.Frame(eWin)
-
-            self.lab = tk.Label(eWin,text="Таблица с таким иемен сущ")
-            self.lab.pack(expand=1)
-
-            self.but = tk.Button(eWin,text="Закрыть",width=15, command=eWin.destroy)
-            self.but.pack(side = tk.BOTTOM)
-        finally:
-            pass
-
+    #Окно инфо
     def infoApp(self):
         w = win.winfo_screenwidth()
         h = win.winfo_screenheight()
@@ -202,6 +174,7 @@ class mainProgramm(tk.Frame):
 
         f.close()
 
+    #Cправочные документы
     def spiskiApp(self):
         w = win.winfo_screenwidth()
         h = win.winfo_screenheight()
@@ -222,10 +195,10 @@ class mainProgramm(tk.Frame):
         self.topText = tk.Label(self.spiskiFrame, text="Справочные документы", bg="#107eaf", font=('', 18))
         self.topText.place(x=305,y=30)
 
-        self.spiskButton1 = tk.Button(self.spiskiFrame, text ="Виды ГСМ", bd=0, justify=CENTER, height=3,font=('',18))
+        self.spiskButton1 = tk.Button(self.spiskiFrame, text ="Виды ГСМ", bd=0, justify=CENTER, height=3,font=('',18),command=partial(self.viewDB, list_WidyGSM, "WidyGSM"))
         self.spiskButton1.pack(side = tk.TOP, fill = tk.X)
 
-        self.spiskButton2 = tk.Button(self.spiskiFrame, text = "Поставщики ГСМ", bd=0, justify=CENTER, height=3, font=('',18))
+        self.spiskButton2 = tk.Button(self.spiskiFrame, text = "Поставщики ГСМ", bd=0, justify=CENTER, height=3, font=('',18),command=partial(self.viewDB, list_PostawhikiGSM, "PostawhikiGSM"))
         self.spiskButton2.pack(side=tk.TOP, fill = tk.X)
 
         self.spiskButton3 = tk.Button(self.spiskiFrame, text= "Водители предприятия", bd=0, justify=CENTER, height=3, font=('',18))
@@ -240,6 +213,7 @@ class mainProgramm(tk.Frame):
         self.closeB = tk.Button(self.spiskiFrame, text='Закрыть', width=5, font=('', 18), command=spiskiAppWindow.destroy)
         self.closeB.place(x=360, y=535)
 
+    #Оперативные документы
     def docApp(self):
         w = win.winfo_screenwidth()
         h = win.winfo_screenheight()
@@ -278,6 +252,7 @@ class mainProgramm(tk.Frame):
         self.closeB = tk.Button(self.docFrame, text='Закрыть', width=5, font=('', 18), command=docAppWindow.destroy)
         self.closeB.place(x=360, y=535)
 
+    #Отчетные документы
     def othWindowSp(self):
         w = win.winfo_screenwidth()
         h = win.winfo_screenheight()
@@ -298,11 +273,11 @@ class mainProgramm(tk.Frame):
         self.topText = tk.Label(self.othWindow, text="Отчётные документы", bg="#107eaf", font=('', 18))
         self.topText.place(x=315,y=30)
 
-        self.otButton1 = tk.Button(self.othWindow,text = 'Отчёт по заключенным договорам на поставку ГСМ',bd=0,justify=CENTER,height=3,font=('',18),command=partial(self.insertTable,list_tab1))
+        self.otButton1 = tk.Button(self.othWindow,text = 'Отчёт по заключенным договорам на поставку ГСМ',bd=0,justify=CENTER,height=3,font=('',18))
         self.otButton1.pack(side=tk.TOP,fill=X)
 
-        self.otButton2 = tk.Button(self.othWindow,text='Отчёт о движении ГСМ на складе',bd=0,justify=CENTER, height=3, font=('', 18),command=partial(self.insertTable, list_tab2))
-        self.otButton2.pack(side=tk.TOP,fill=X)
+        # self.otButton2 = tk.Button(self.othWindow,text='Отчёт о движении ГСМ на складе',bd=0,justify=CENTER, height=3, font=('', 18),command=partial(self.insertTable, list_tab2))
+        # self.otButton2.pack(side=tk.TOP,fill=X)
 
         self.otButton3 = tk.Button(self.othWindow, text='Отчёт по водителям',bd=0, justify=CENTER, height=3,font=('',18), command=partial(self.insertTable, list_tab3))
         self.otButton3.pack(side=tk.TOP, fill=X)
@@ -316,6 +291,7 @@ class mainProgramm(tk.Frame):
         self.closeB = tk.Button(self.othWindow, text='Закрыть', width=5, font=('', 18), command=othWind.destroy)
         self.closeB.place(x=360,y=535)
 
+    #Окно добавления в таблицу
     def insertTable(self,nameBD):
 
         dbWindow = tk.Toplevel(self)
@@ -347,6 +323,7 @@ class mainProgramm(tk.Frame):
         # except Exception as _ex:
         #     pass
 
+    #Окно закрытия приложения
     def closeApp(self):
         w = win.winfo_screenwidth()
         h = win.winfo_screenheight()
@@ -370,12 +347,78 @@ class mainProgramm(tk.Frame):
         self.noButton = tk.Button(self.closeWindow, text="Нет",fg='red', width=12, font=('', 12),command=clWin.destroy)
         self.noButton.place(x=150,y=100)
 
+    #Простотр содержимого БД
+    def viewDB(self,list,tablename):
+
+        viewDB = tk.Toplevel(self)
+        viewDB .title(f"{tablename}")
+        viewDB .geometry('1280x1024')
+        viewDB.rowconfigure(index=0,weight=1)
+        viewDB.columnconfigure(index=0,weight=1)
+        viewDB .resizable(True, True)
+
+        self.viewDB  = tk.Frame(viewDB)
+        self.viewDB.place(relwidth=1, relheight=1)
+        data = ('',)
+        try:
+            with conn.cursor() as cursor:
+                cursor.execute(f"""SELECT * FROM "{tablename}" """)
+                data = (row for row in cursor.fetchall())
+        except Exception as _ex:
+            print("HELP")
+
+        self.tree = ttk.Treeview(self.viewDB,height=37,columns=list, show="headings")
+        self.tree.pack(fill=X)
+
+        for i in list:
+            self.tree.heading(f"{i}",text=f"{i}",anchor=W)
+
+        for row in data:
+            self.tree.insert('',tk.END,values=tuple(row))
+
+        for person in data:
+            self.tree.insert("",END,values=tuple(person))
+
+        self.blueLab = tk.Label(self.viewDB, bg="#107eaf", height=5)
+        self.blueLab.pack(side = BOTTOM, fill = X)
+
+        self.inputButton = tk.Button(self.viewDB, text="Добавить", bd=0, justify=CENTER, width=12, font=('', 18))
+        self.inputButton.place(x=100,y=720)
+
+        self.changeButton = tk.Button(self.viewDB, text = "Изменить", bd=0, justify=CENTER, width=12, font=('',18))
+        self.changeButton.place(x=300,y=720)
+
+        self.closeButton = tk.Button(self.viewDB, text = "Закрыть", bd=0, justify=CENTER, width=12, font=('',18),command=viewDB.destroy)
+        self.closeButton.place(x=500,y=720)
+
+    #Выход из системы
     def rebot(a, _event=None):
         a.destroy()
         loginSystem(win)
 
+
 class mainBD(tk.Frame):
     pass
+
+class Table(tk.Frame):
+    def __int__(self,parent = None, headings = tuple(), rows = tuple()):
+        super().__init__(parent)
+
+        table=ttk.Treeview(self,show="headings", selectmode="browse")
+        table["columns"]=headings
+        table["displaycolumns"]=headings
+
+        for head in headings:
+            table.heading(head,text=head,anchor=tk.CENTER)
+            table.column(head,anchor=tk.CENTER)
+
+        for row in rows:
+            table.insert('',tk.END, values=tuple(row))
+
+        # scrolltable = tk.Scrollbar(self, command=table.yview)
+        # table.configure(yscrollcommand=scrolltable.set)
+        # scrolltable.pack(side=tk.RIGHT, fill=tk.Y)
+        # table.pack(expand=tk.YES, fill=tk.BOTH)
 
 
 
