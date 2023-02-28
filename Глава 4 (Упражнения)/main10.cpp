@@ -51,6 +51,7 @@ int main(){
                 else{cout<<"\nВы проиграли Робо выбрал "<<vec[2];j++;break;}
             }
         }
-        if (i == 3 || j == 3 ){break;}
+        if (i == 3){cout<<"Вы выйграли!!!";break;}
+        if (j == 3){cout<<"Вы проиграли!!!";break;}
     }
 }
