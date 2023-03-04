@@ -1,29 +1,23 @@
+#include <limits>
 #include <iostream>
 using namespace std;
-
 template <typename T>
-void Sum(T sum, T sum1, T n){
-    int i=1;
-    while(sum<n){
-        if(i==1){
-            sum+=1;
-            //cout<<"В "<<i<<" клетке "<<sum<<" риса\n";
-            sum1=1;
-            i++;
-        }
-        else{
-            sum1=sum1*2;
-            //cout<<"В "<<i<<" клетке "<<sum1<<" риса\n";
-            sum+=sum1;
-            i++;
-        }
 
+void Sum(T x){
+    T j = 1, sum = 1, prev = 1;
+    while (sum < x)
+    {
+        prev *= 2;
+        sum += prev;
+        j++;
     }
-    cout<<"Для "<<n<<" зерен риса надо "<<i-1<<" клеток\n";
+    cout<<"Для "<<" зерен риса надо "<<j<<" клеток\n";
 }
 
-int main(){
-    Sum(0,0,2147483647);
-    Sum(0.0,0.0,1.7E+308);
-    return 0;
+
+int main() {
+    int i = std::numeric_limits<int>::max();
+    double d = std::numeric_limits<double>::max();
+    Sum(i);
+    Sum(d);
 }
