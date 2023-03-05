@@ -4,23 +4,23 @@
 using namespace std;
 
 int main() {
-    map<int, string> mp;
+    multimap<int, string> mp;
     string name;
     int number;
-    bool proverka = true;
+    bool check = true;
     while (true) {
         cout << "Введите имя и кол баллов :";
         cin >> name;
         cin >> number;
         auto it = mp.begin();
         for(; it!= mp.end();it++){
-            if(name == it->second)   {cout<<"Такое имя уже существует!\n"; proverka = false;}
+            if(name == it->second)   {cout<<"Такое имя уже существует!\n"; check = false;}
 
         }
 
         if (name == "NoName" || number == 0) {
             break;
-        } else if(proverka){
+        } else if(check){
             mp.insert(make_pair(number, name));}
         else{
             continue;

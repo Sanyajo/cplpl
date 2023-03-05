@@ -2,29 +2,27 @@
 #include <vector>
 using namespace std;
 int main(){
+    int number;
+    cout<<"Введите число: ";
+    cin>>number;
     vector <int> vec;
-    int max;
-    cout<<"Input max: ";
-    cin>>max;
+    bool check = true;
 
-    for(int i=1;i<=max;++i){
-        vec.push_back(i);
-    }
-
-    auto it = std::remove(vec.begin(), vec.end(), 1);
-    vec.erase(it, vec.end());
-
-    for(int i=1;i<=max;i++){
+    for(int i=2;i<=number;i++){
         for(int j=2;j<i;j++){
-            if(i%j==0 && i!=j){
-                auto it = std::remove(vec.begin(), vec.end(), i);
-                vec.erase(it, vec.end());
+            if(i%j==0){
+                check = false;
+                break;
             }
-
         }
+        if(check){
+            vec.push_back(i);
+        }
+        check = true;
     }
 
-    for( int i: vec) {
-        cout << i << " ";
+    for(int i: vec){
+        cout<<i<<" ";
     }
+
 }
