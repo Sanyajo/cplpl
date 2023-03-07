@@ -15,12 +15,12 @@ int main(){
     cout<<"Введите строку: ";
     cin>>str;
 
-    int k = 0;
+    bool check = false;
     for(int i=0;i<vec.size();++i){
-        if(str == vec[i]){k++;}
+        if(str == vec[i]){check = true;}
     }
 
-    if(k == 0){cout<<"Ввели недопустимое значение!!!"; return 1;}
+    if(!check){cout<<"Ввели недопустимое значение!!!"; return 1;}
     else{
         for(int i=0;i<vec.size();++i){
             if(str == vec[i]){
