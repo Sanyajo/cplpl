@@ -1,10 +1,11 @@
 #include <iostream>
-#include <map>
 #include <vector>
 using namespace std;
 
 int main() {
-    multimap<int, string> mp;
+    vector <int> ageVec;
+    vector <string> nameVec;
+
     string name;
     int number;
 
@@ -16,32 +17,34 @@ int main() {
         cin >> name;
         cin >> number;
 
-        auto it = mp.begin();
-        for(; it!= mp.end();it++){
-            if(name == it->second)   {cout<<"Такое имя уже существует!\n"; proverka = false;}
-
+        for(string i : nameVec){
+            if(i == name){
+                cout<<"Такое имя уже существует\n"; proverka = false;
+            }
         }
 
         if (name == "NoName" || number == 0) {
             break;
         } else if(proverka){
-            mp.insert(make_pair(number, name));}
+            nameVec.push_back(name);
+            ageVec.push_back(number);
+        }
         else{
-           continue;
+            continue;
         }
     }
 
     cout<<"Введите кол баллов: ";
     cin>>number;
+    bool check = false;
 
-    for(auto it = mp.begin(); it != mp.end();it++){
-        if(it->first == number){
-            cout<<it->second<<endl;
-            k++;
+    for(int i=0;i<ageVec.size();++i){
+        if(ageVec[i] == number){
+            cout<<nameVec[i]<<endl;
         }
     }
-
-    if(k==0){
+    
+    if(!check){
         cout<<"Баллы не найдены!";
     }
 }
