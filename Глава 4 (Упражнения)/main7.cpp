@@ -2,20 +2,22 @@
 #include <vector>
 using namespace std;
 
-bool checkNumber(bool& check, const string& str, int& x, const vector<string>& vec1){
-    auto it = find(vec1.begin(),vec1.end(),str);
 
-    if(it == vec1.end()){
-        cout<<"\nЧисло: "<<str<<" некорректное!";
-        check=false;
-        return check;
-    }
-}
-
-void trans(const string& str, int& x, const vector<string>& vec1){
+bool trans(bool& check, const string& str, int& x, const vector<string>& vec1){
     for(int i=0;i<vec1.size();i++){
-        if(str == vec1[i])    x=i;
+        if(str == vec1[i]){
+            x=i;
+            check = true;
+            break;
+        }
+        else{
+            check = false;
+        }
     }
+    if(!check){
+        cout<<"\nЧисло "<<str<<" некорректное!!!";
+    }
+    return check;
 }
 
 void Calc(char ch, int x1, int x2) {
@@ -61,14 +63,10 @@ int main(){
 
     bool check;
 
-    checkNumber(check, str_x1, x1, vec1);
-    checkNumber(check, str_x2, x2, vec1);
-
+    trans(check,str_x1,x1,vec1);
     if(!check)  return 0;
-    else{
-        trans(str_x1,x1,vec1);
-        trans(str_x2,x2,vec1);
-    }
+    trans(check,str_x2,x2,vec1);
+    if(!check)  return 0;
 
 
     while(true){
