@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-bool transformation(bool& check,const string& str, int& x,const vector<string>& vec1){
+bool checkNumber(bool& check, const string& str, int& x, const vector<string>& vec1){
     auto it = find(vec1.begin(),vec1.end(),str);
 
     if(it == vec1.end()){
@@ -10,10 +10,11 @@ bool transformation(bool& check,const string& str, int& x,const vector<string>& 
         check=false;
         return check;
     }
-    else{
-        for(int i=0;i<vec1.size();i++){
-            if(str == vec1[i])    x=i;
-        }
+}
+
+void trans(const string& str, int& x, const vector<string>& vec1){
+    for(int i=0;i<vec1.size();i++){
+        if(str == vec1[i])    x=i;
     }
 }
 
@@ -60,10 +61,14 @@ int main(){
 
     bool check;
 
-    transformation(check,str_x1,x1,vec1);
-    transformation(check,str_x2,x2,vec1);
+    checkNumber(check, str_x1, x1, vec1);
+    checkNumber(check, str_x2, x2, vec1);
 
     if(!check)  return 0;
+    else{
+        trans(str_x1,x1,vec1);
+        trans(str_x2,x2,vec1);
+    }
 
 
     while(true){
