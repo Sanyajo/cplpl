@@ -16,8 +16,8 @@ bool trans(bool& check, const string& str, int& x, const vector<string>& vec1){
     }
     if(!check){
         cout<<"\nЧисло "<<str<<" некорректное!!!";
+        return 1;
     }
-    return check;
 }
 
 void Calc(char ch, int x1, int x2) {
@@ -64,10 +64,7 @@ int main(){
     bool check;
 
     trans(check,str_x1,x1,vec1);
-    if(!check)  return 0;
     trans(check,str_x2,x2,vec1);
-    if(!check)  return 0;
-
 
     while(true){
         char ch =' ';
