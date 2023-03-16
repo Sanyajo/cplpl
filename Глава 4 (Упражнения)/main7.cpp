@@ -3,7 +3,7 @@
 using namespace std;
 
 void change(const vector <string>& vecStr,char number[6], int& x){
-    int digit_x;    //если число двузначное число
+    int digit_x;    //если двузначное число
     bool check = false;
     string str = string(number);
 
