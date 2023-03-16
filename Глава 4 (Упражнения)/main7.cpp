@@ -2,22 +2,25 @@
 #include <vector>
 using namespace std;
 
+void change(const vector <string>& vecStr,char number[6], int& x){
+    bool check = false;
+    string str = string(number);
 
-bool trans(bool& check, const string& str, int& x, const vector<string>& vec1){
-    for(int i=0;i<vec1.size();i++){
-        if(str == vec1[i]){
-            x=i;
+    for(int i = 0; i<vecStr.size(); ++i){
+        if(str == vecStr[i]){
+            x = i;
             check = true;
-            break;
-        }
-        else{
-            check = false;
         }
     }
+
     if(!check){
-        cout<<"\nЧисло "<<str<<" некорректное!!!";
-        return 1;
+        x = number[0] - '0';
     }
+
+    if (x > 9){
+        throw (number);
+    }
+
 }
 
 void Calc(char ch, int x1, int x2) {
@@ -55,16 +58,27 @@ void Calc(char ch, int x1, int x2) {
 }
 
 int main(){
-    vector <string> vec1 ={"zero","one","two","three","four","five","six","seven","eight","nine"};
-    string str_x1, str_x2;
-    int x1,x2;
+    vector <string> vecStr = {"zero","one","two","three","four","five","six","seven","eight","nine"};
+
+    char number1[6], number2[6];
     cout<<"Введите числа: ";
-    cin>>str_x1>>str_x2;
+    cin>>number1>>number2;
 
-    bool check;
+    int x1, x2;
 
-    trans(check,str_x1,x1,vec1);
-    trans(check,str_x2,x2,vec1);
+    try{
+        change(vecStr,number1,x1);
+    }catch (char* number){
+        cout<<"Не корректное число: "<<number<<"\n";
+        return 1;
+    }
+
+    try{
+        change(vecStr,number2,x2);
+    }catch (char* number){
+        cout<<"Не корректное число: "<<number<<"\n";
+        return 1;
+    }
 
     while(true){
         char ch =' ';
@@ -72,9 +86,10 @@ int main(){
         cin>>ch;
 
         if(ch == '0'){
-            return 0;
+            break;
         }else{
             Calc(ch, x1, x2);
         }
     }
+
 }
