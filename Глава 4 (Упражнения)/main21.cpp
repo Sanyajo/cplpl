@@ -9,7 +9,6 @@ int main() {
     string name;
     int number;
 
-    int k=0;
     bool proverka = true;
     while (true) {
 
@@ -19,7 +18,8 @@ int main() {
 
         for(string i : nameVec){
             if(i == name){
-                cout<<"Такое имя уже существует\n"; proverka = false;
+                cout<<"Такое имя уже существует\n";
+                proverka = false;
             }
         }
 
@@ -41,9 +41,10 @@ int main() {
     for(int i=0;i<ageVec.size();++i){
         if(ageVec[i] == number){
             cout<<nameVec[i]<<endl;
+            check = true;
         }
     }
-    
+
     if(!check){
         cout<<"Баллы не найдены!";
     }
