@@ -2,27 +2,25 @@
 #include <vector>
 using namespace std;
 
-void change(const vector <string>& vecStr,char number[6], int& x){
-    int digit_x;    //если двузначное число
+void change(const vector <string>& vecStr, string number, int& x){
     bool check = false;
-    string str = string(number);
 
     for(int i = 0; i<vecStr.size(); ++i){
-        if(str == vecStr[i]){
+        if(number == vecStr[i]){
             x = i;
             check = true;
         }
     }
 
     if(!check){
-        x = number[0] - '0';
-        digit_x = number[1] - '0';
+        //если под строковыми числами, подразумевалось "1" а не "one", то меняем int на double, stoi на stod
+        x = stoi(number);
     }
 
-    if (x > 9 || digit_x > 9){
+    if(x > 9){
         throw (number);
     }
-
+    
 }
 
 void Calc(char ch, int x1, int x2) {
@@ -62,7 +60,7 @@ void Calc(char ch, int x1, int x2) {
 int main(){
     vector <string> vecStr = {"zero","one","two","three","four","five","six","seven","eight","nine"};
 
-    char number1[6], number2[6];
+    string number1, number2;
     cout<<"Введите числа: ";
     cin>>number1>>number2;
 
@@ -70,15 +68,15 @@ int main(){
 
     try{
         change(vecStr,number1,x1);
-    }catch (char* number){
-        cout<<"Не корректное число: "<<number<<"\n";
+    }catch (string number){
+        cout<<"Вылез из диапазона числа : "<<number<<"\n";
         return 1;
     }
 
     try{
         change(vecStr,number2,x2);
-    }catch (char* number){
-        cout<<"Не корректное число: "<<number<<"\n";
+    }catch (string number){
+        cout<<"Вылез из диапазона числа : "<<number<<"\n";
         return 1;
     }
 
