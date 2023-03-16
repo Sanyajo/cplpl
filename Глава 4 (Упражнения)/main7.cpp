@@ -3,6 +3,7 @@
 using namespace std;
 
 void change(const vector <string>& vecStr,char number[6], int& x){
+    int digit_x;    //если число двузначное число
     bool check = false;
     string str = string(number);
 
@@ -15,9 +16,10 @@ void change(const vector <string>& vecStr,char number[6], int& x){
 
     if(!check){
         x = number[0] - '0';
+        digit_x = number[1] - '0';
     }
 
-    if (x > 9){
+    if (x > 9 || digit_x > 9){
         throw (number);
     }
 
@@ -91,5 +93,5 @@ int main(){
             Calc(ch, x1, x2);
         }
     }
-
+    return 0;
 }
