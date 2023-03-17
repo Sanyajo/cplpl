@@ -13,14 +13,13 @@ void change(const vector <string>& vecStr, string number, int& x){
     }
 
     if(!check){
-        //если под строковыми числами, подразумевалось "1" а не "one", то меняем int на double, stoi на stod
-        x = stoi(number);
+        x = stoi(number);//надо ли обрабатывать ошибку?
     }
 
     if(x > 9){
         throw (number);
     }
-    
+
 }
 
 void Calc(char ch, int x1, int x2) {
