@@ -47,5 +47,7 @@ int main() {
 
     if(!check){
         cout<<"Баллы не найдены!";
+        return 1;
     }
+    return 0;
 }
