@@ -7,8 +7,8 @@ int main(){
     int num;
     cout<<"Введите число: ";
     cin>>num;
-    
-    if(num > 9){
+
+    if(num > 9 || num < 0){
         cout<<"Ввели недопустимое значение!!!";
         return 1;
     }
