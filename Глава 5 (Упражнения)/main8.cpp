@@ -9,6 +9,11 @@ int main(){
     std::cout<<"Input N: ";
     std::cin>>N;
 
+    if(N < 0){
+        std::cerr<<"N < 0 !";
+        return 1;
+    }
+
     std::vector <int> vec;
 
     while(std::cin>>number){
