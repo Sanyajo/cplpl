@@ -1,26 +1,34 @@
 #include <iostream>
 #include <vector>
 
-void inputVec(std::vector <int>& vec){
-    //int i = std::numeric_limits<int>::max();
+void inputVec(std::vector <double>& vec){
+
     std::string number;
     while(std::cin>>number) {
         if (number == "|") {
             break;
-        }else if(stoi(number) == 0) { //!stoi(number)
+        }else if(stod(number) == 0) {
             throw ("Значение не может быть представленно как int ! \n");
         }else{
-            int n = stoi(number);
+            double n = stod(number);
             vec.push_back(n);
             }
     }
 }
 
+std::vector <double> razn(std::vector <double>& vec){
+    std::vector <double> vec1;
+    for(int i = 0; i < vec.size()-1; ++i){
+        vec1.push_back(vec[i+1] - vec[i]);
+    }
+    return vec1;
+}
+
 int main(){
     setlocale(LC_ALL,"RUS");
 
-    std::vector <int> vec;
-    int sum = 0;
+    std::vector <double> vec;
+    double sum = 0;
 
     int N = 0;
     std::cout<<"Введите количество суммируемых значений: \n";
@@ -38,7 +46,7 @@ int main(){
         std::cerr<<msg;
     }
 
-   if(N > vec.size()){
+    if(N > vec.size()){
         std::cerr<<"N > vec.size !";
         return 1;
     }else if(vec.size() == 0){
@@ -55,15 +63,21 @@ int main(){
         for(int i = 0; i <= N-1; ++i){
             std::cout<<vec[i]<<" ";
         }
-        std::cout<<") равна "<<sum;
+        std::cout<<") равна "<<sum<<"\n";
     }
     else{
         std::cout<<"Сумма первых "<<N<<" чисел ( ";
         for(int i = 0; i <= N-1; ++i){
             std::cout<<vec[i]<<" ";
         }
-        std::cout<<") равна "<<sum;
+        std::cout<<") равна "<<sum<<"\n";
     }
 
+    std::vector <double> vec1 = razn(vec);
+    std::cout<<"Вектор разностей: \n";
+    for(auto i : vec1){
+        std::cout<<i<<" ";
+    }
+    
     return 0;
 }
