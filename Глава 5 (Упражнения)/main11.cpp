@@ -1,20 +1,24 @@
 #include <iostream>
-#include <vector>
 
-int main(){
-    //int k = std::numeric_limits<int>::max();
-
-   int i= 0 ,j = 1 ,check;
-   long int sum = 0;
-    while(true){
-        check=sum;
-       sum=(i+j);
-       i=j;
-       j=sum;
-       if(sum > 32767){
-           std::cout<<check;
-           break;
-       }
+ long int Fib(int i){
+    if(i < 1){
+        return 0;
+    }else if(i == 1) {
+        return 1;
+    }else{
+        return Fib(i-1) + Fib(i - 2);
     }
-
 }
+
+ int main() {
+     int i = 0;
+     int k = std::numeric_limits<int>::max();
+     while (true) {
+         if(Fib(i) > k){
+             std::cout << Fib(i-1) << std::endl;
+             break;
+         }
+         i++;
+     }
+     return 0;
+ }
