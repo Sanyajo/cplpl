@@ -3,7 +3,7 @@
 void conv_F(double t){
     t = 9.0/5*t+32;
     if(t <= -459.67){
-        throw ("t <= -459,67");
+        throw std::invalid_argument("t <= -459,67");
     }else{
         std::cout<<t<<" °F";
     }
@@ -12,7 +12,7 @@ void conv_F(double t){
 void conv_C(double t){
     t = (t-32)*5.0/9;
     if(t <= -273.15){
-        throw ("t <= -273.15");
+        throw std::invalid_argument("t <= -273.15");
     }else{
         std::cout<<t<<" °C";
     }

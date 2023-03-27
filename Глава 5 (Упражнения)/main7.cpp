@@ -8,7 +8,7 @@ void discr(double a, double b, double c){
     double x2 = NULL;
 
     if(discriminant < 0 ){
-        throw ("discriminant < 0");
+        throw std::invalid_argument("discriminant < 0");
     }else if(discriminant == 0){
         x1 = (-1 * b) / (2 * a);
         std::cout<<x1;
