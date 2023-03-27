@@ -12,7 +12,7 @@ void randomVec(std::vector <int>& vec){
 
     int i = 0;
     while(i < 3){
-        for(int j = 0; j < vec.size(); j++){
+        for(int j = 0; j < vec.size(); ++j){
             if(vec[j] == buf2 ){    //|| vec[j+1] == buf2 || vec[j-1] == buf2
                 check = false;
             }
